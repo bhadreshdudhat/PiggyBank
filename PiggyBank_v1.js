@@ -17,8 +17,8 @@ function statement(){
     statement.count++;
 }
 
-balance=0;lt=0;s="";st=[];
-deposit.count=0;withdraw.count=0;statement.count=0;
+balance=0;lt=0;st=[];//stored in global table
+deposit.count=0;withdraw.count=0;statement.count=0;//table variable of functions
 
 deposit(1000);
 withdraw(40);

@@ -2,7 +2,6 @@ var piggyBank={};
 
 piggyBank.balance=0;
 piggyBank.lt=0;
-piggyBank.s="";
 piggyBank.st=[];
 
 piggyBank.deposit=function (v) {
