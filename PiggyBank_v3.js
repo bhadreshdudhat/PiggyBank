@@ -48,5 +48,9 @@ piggyBank_2.withdraw(40);
 piggyBank_2.deposit(100);
 piggyBank_2.withdraw(100);
 
+//different way of working with objects and this variable
+withdraw.apply(piggyBank_2,[900]);
+deposit.apply(piggyBank_1,[800]);
+
 piggyBank_1.statement("1654958 Bhadresh Dudhat");
 piggyBank_2.statement("1000957 Vimal Nakrani");
