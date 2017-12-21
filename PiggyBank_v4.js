@@ -25,20 +25,18 @@ var bankOperations= {
 
 
 function PiggyBank(account_holder) {
-    var p = {};
-    p.account_holder=account_holder;
-    p.balance = 0;
-    p.lt = 0;
-    p.st = [];
-    p.__proto__=bankOperations;//assigning the parent
-    return p;
+    this.account_holder=account_holder;
+    this.balance = 0;
+    this.lt = 0;
+    this.st = [];
 }
 
-
+//__proto__ field of newly created object is loaded with prototype field of function
+PiggyBank.prototype=bankOperations;
 
 //Creating objects
-var PiggyBank_1=PiggyBank("Bhadresh");
-var PiggyBank_2=PiggyBank("Arpan");
+var PiggyBank_1=new PiggyBank("Bhadresh");
+var PiggyBank_2=new PiggyBank("Arpan");
 
 ////////
 PiggyBank_1.deposit(1000);
