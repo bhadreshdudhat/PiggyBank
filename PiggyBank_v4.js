@@ -37,8 +37,8 @@ function PiggyBank(account_holder) {
 
 
 //Creating objects
-var PiggyBank_1=new PiggyBank("Bhadresh");
-var PiggyBank_2=new PiggyBank("Arpan");
+var PiggyBank_1=PiggyBank("Bhadresh");
+var PiggyBank_2=PiggyBank("Arpan");
 
 ////////
 PiggyBank_1.deposit(1000);
