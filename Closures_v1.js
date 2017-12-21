@@ -19,6 +19,8 @@ function f1(){
 }
 
 f1();
-f1.f2()
-f1.f3();
-f1.f2();
+var g1=f1.f2;
+var g2=f1.f3;
+g1();g2();g1();
+console.log("------------");
+
