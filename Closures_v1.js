@@ -15,18 +15,17 @@ function f1(){
         i--;
         console.log(i);
     };
-
 }
 
-f1();
+
+
+f1();console.log("------Closure 1 ------");
 var g1=f1.f2;
 var g2=f1.f3;
-g1();g2();g1();
-console.log("------------");
+g1();g1();g2();
 
-//f1() called again
-f1();//diffrent closure will be created
-var h1=f1.f2;
-var h2=f1.f3;
-h1();h2();h1();
-console.log("------------");
+f1();console.log("------Closure 2 ------");
+g1();g1();g2();
+
+f1();console.log("------Closure 3 ------");
+g1();g1();g2();
