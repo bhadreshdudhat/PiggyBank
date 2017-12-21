@@ -16,18 +16,25 @@ function statement(){
     console.log("---------------------------------------");
 }
 
-///// Creating the function for making Objects
+///// Prototypal Inheritance
+var bankOperations= {
+    deposit :deposit,
+    withdraw : withdraw,
+    statement : statement
+};
+
+
 function PiggyBank(account_holder) {
     var p = {};
     p.account_holder=account_holder;
     p.balance = 0;
     p.lt = 0;
     p.st = [];
-    p.deposit = deposit;
-    p.withdraw = withdraw;
-    p.statement = statement;
+    p.__proto__=bankOperations;//assigning the parent
     return p;
 }
+
+
 
 //Creating objects
 var PiggyBank_1=new PiggyBank("Bhadresh");
@@ -46,7 +53,6 @@ PiggyBank_2.withdraw(100);
 PiggyBank_2.deposit(1000);
 PiggyBank_2.withdraw(80);
 PiggyBank_2.deposit(100);
-PiggyBank_2.withdraw(90);
 
 //different way of working with objects and this variable
 withdraw.apply(PiggyBank_2,[900]);
