@@ -1,5 +1,6 @@
 // can write function inside the function
 //  inner functions can access outer function's variable in shared fashion
+
 function f1(){
     var i=0;
 
