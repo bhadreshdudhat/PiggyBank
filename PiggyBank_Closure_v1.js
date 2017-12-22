@@ -1,65 +1,49 @@
-function withdraw(v) {
-    if(this.balance>v){
-        this.balance=this.balance-v;
-        this.lt=-v;
-        this.st.push(new Date().toUTCString()+ " this.balance= "+this.balance+"     "+"Transaction Amt= "+(this.lt));
+//use of CLOSURE
+function PiggyBank(account_holder)
+{
+    var account_holder=account_holder;
+    var balance = 0;
+    var lt = 0;
+    var st = [];
+
+    this.withdraw=function (v){
+        if(balance>v){
+            balance=balance-v;
+            lt=-v;
+            st.push( " balance= "+balance+"     "+"Transaction Amt= "+(lt));
+        }
     }
-}
-function deposit(v) {
-    this.balance=this.balance+v;
-    this.lt=v;
-    this.st.push(new Date().toUTCString()+ " this.balance= "+this.balance+"     "+"Transaction Amt= "+(this.lt));
-}
-function statement(){
-    console.log("----------Statement for Account of " +this.account_holder+" -----------");
-    console.log(this.st);
-    console.log("---------------------------------------");
-}
+    this.deposit=function (v) {
+        balance=balance+v;
+        lt=v;
+        st.push(" balance= "+balance+"     "+"Transaction Amt= "+(lt));
+    }
+    this.statement=function (){
+        console.log("----------Statement for Account of " +account_holder+" -----------");
+        console.log(st);
+        console.log("---------------------------------------");
+    }
 
-///// Prototypal Inheritance
-var bankOperations= {
-    deposit :deposit,
-    withdraw : withdraw,
-    statement : statement
-};
+    // this.deposit=deposit;
+    // this.withdraw=withdraw;
+    // this.statement=statement;
 
-
-function PiggyBank(account_holder) {
-    this.account_holder=account_holder;
-    this.balance = 0;
-    this.lt = 0;
-    this.st = [];
 }
 
-//__proto__ field of newly created object is loaded with prototype field of function
-PiggyBank.prototype=bankOperations;
 
-//Creating objects
-var PiggyBank_1=new PiggyBank("Bhadresh");
-var PiggyBank_2=new PiggyBank("Arpan");
+var bhadresh_pgb = new PiggyBank("Bhadresh");
+var arpan_pgb = new PiggyBank("Arpan");
+bhadresh_pgb.deposit(10);
+bhadresh_pgb.withdraw(9);
+bhadresh_pgb.statement();
+arpan_pgb.deposit(100);
+arpan_pgb.withdraw(90);
+arpan_pgb.statement();
 
-////////
-PiggyBank_1.deposit(1000);
-PiggyBank_1.withdraw(40);
-PiggyBank_1.deposit(100);
-PiggyBank_1.withdraw(100);
+arpan_pgb.balance=-100000000000;//trying to change original balance directly
+//but will not happen to arpan_pgb balance
+console.log(arpan_pgb.balance);
+arpan_pgb.deposit(100);
+arpan_pgb.statement();
+console.log(arpan_pgb.balance);
 
-PiggyBank_2.deposit(1000);
-PiggyBank_2.withdraw(40);
-PiggyBank_2.deposit(100);
-PiggyBank_2.withdraw(100);
-PiggyBank_2.deposit(1000);
-PiggyBank_2.withdraw(80);
-PiggyBank_2.deposit(100);
-
-//different way of working with objects and this variable
-withdraw.apply(PiggyBank_2,[900]);
-deposit.apply(PiggyBank_1,[800]);
-
-PiggyBank_1.statement();
-PiggyBank_2.statement();
-
-//Problem with JS
-PiggyBank_2.balance=-1000;
-console.log(PiggyBank_2.balance);
-console.log("balance can be changed by anyone in the world");
