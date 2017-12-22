@@ -2,13 +2,13 @@ function withdraw(v) {
     if(this.balance>v){
         this.balance=this.balance-v;
         this.lt=-v;
-        this.st.push(new Date().toUTCString()+ " this.balance= "+this.balance+"     "+"Transaction Amt= "+(this.lt));
+        this.st.push(" balance= "+this.balance+"     "+"Transaction Amt= "+(this.lt));
     }
 }
 function deposit(v) {
     this.balance=this.balance+v;
     this.lt=v;
-    this.st.push(new Date().toUTCString()+ " this.balance= "+this.balance+"     "+"Transaction Amt= "+(this.lt));
+    this.st.push(" balance= "+this.balance+"     "+"Transaction Amt= "+(this.lt));
 }
 function statement(){
     console.log("----------Statement for Account of " +this.account_holder+" -----------");
@@ -58,3 +58,9 @@ deposit.apply(PiggyBank_1,[800]);
 
 PiggyBank_1.statement();
 PiggyBank_2.statement();
+
+PiggyBank_2.balance=-1000;//will change original balance directly
+console.log(PiggyBank_2.balance);
+PiggyBank_2.deposit(100);
+PiggyBank_2.statement();
+console.log(PiggyBank_2.balance);
