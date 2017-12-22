@@ -59,7 +59,7 @@ deposit.apply(PiggyBank_1,[800]);
 PiggyBank_1.statement();
 PiggyBank_2.statement();
 
-PiggyBank_2.balance=-1000;//will change original balance directly
+PiggyBank_2.balance=-1000000000000;//will change original balance directly
 console.log(PiggyBank_2.balance);
 PiggyBank_2.deposit(100);
 PiggyBank_2.statement();
