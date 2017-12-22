@@ -1,29 +1,38 @@
-//use of CLOSURE
-function PiggyBank(account_holder) 
-{
-    var account_holder=account_holder;
-    var balance = 0;
-    var lt = 0;
-    var st = [];
-
-    PiggyBank.withdraw(v)=function {
-        if(balance>v){
-            balance=balance-v;
-            lt=-v;
-            st.push(new Date().toUTCString()+ " balance= "+balance+"     "+"Transaction Amt= "+(lt));
-        }
-    }
-    function deposit(v) {
-        balance=balance+v;
-        lt=v;
-        st.push(new Date().toUTCString()+ " balance= "+balance+"     "+"Transaction Amt= "+(lt));
-    }
-    function statement(){
-        console.log("----------Statement for Account of " +account_holder+" -----------");
-        console.log(st);
-        console.log("---------------------------------------");
+function withdraw(v) {
+    if(this.balance>v){
+        this.balance=this.balance-v;
+        this.lt=-v;
+        this.st.push(new Date().toUTCString()+ " this.balance= "+this.balance+"     "+"Transaction Amt= "+(this.lt));
     }
 }
+function deposit(v) {
+    this.balance=this.balance+v;
+    this.lt=v;
+    this.st.push(new Date().toUTCString()+ " this.balance= "+this.balance+"     "+"Transaction Amt= "+(this.lt));
+}
+function statement(){
+    console.log("----------Statement for Account of " +this.account_holder+" -----------");
+    console.log(this.st);
+    console.log("---------------------------------------");
+}
+
+///// Prototypal Inheritance
+var bankOperations= {
+    deposit :deposit,
+    withdraw : withdraw,
+    statement : statement
+};
+
+
+function PiggyBank(account_holder) {
+    this.account_holder=account_holder;
+    this.balance = 0;
+    this.lt = 0;
+    this.st = [];
+}
+
+//__proto__ field of newly created object is loaded with prototype field of function
+PiggyBank.prototype=bankOperations;
 
 //Creating objects
 var PiggyBank_1=new PiggyBank("Bhadresh");
