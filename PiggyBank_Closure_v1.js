@@ -47,3 +47,5 @@ arpan_pgb.deposit(100);
 arpan_pgb.statement();
 console.log(arpan_pgb.balance);
 
+// BUG:
+//for every customer seperate copie of 3 methods created
