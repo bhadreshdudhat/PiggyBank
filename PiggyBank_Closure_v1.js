@@ -6,27 +6,27 @@ function PiggyBank(account_holder)
     var lt = 0;
     var st = [];
 
-    this.withdraw=function (v){
+    function withdraw(v){
         if(balance>v){
             balance=balance-v;
             lt=-v;
             st.push( " balance= "+balance+"     "+"Transaction Amt= "+(lt));
         }
     }
-    this.deposit=function (v) {
+    function deposit (v) {
         balance=balance+v;
         lt=v;
         st.push(" balance= "+balance+"     "+"Transaction Amt= "+(lt));
     }
-    this.statement=function (){
+    function statement(){
         console.log("----------Statement for Account of " +account_holder+" -----------");
         console.log(st);
         console.log("---------------------------------------");
     }
 
-    // this.deposit=deposit;
-    // this.withdraw=withdraw;
-    // this.statement=statement;
+    this.deposit=deposit;
+    this.withdraw=withdraw;
+    this.statement=statement;
 
 }
 
