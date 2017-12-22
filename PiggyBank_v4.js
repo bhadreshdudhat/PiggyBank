@@ -58,3 +58,8 @@ deposit.apply(PiggyBank_1,[800]);
 
 PiggyBank_1.statement();
 PiggyBank_2.statement();
+
+//Problem with JS
+PiggyBank_2.balance=-1000;
+console.log(PiggyBank_2.balance);
+console.log("balance can be changed by anyone in the world");
