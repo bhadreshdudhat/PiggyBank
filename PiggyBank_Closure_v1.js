@@ -1,33 +1,49 @@
 //use of CLOSURE
+function withdraw(v) {
+    if(this.balance>v){
+        this.balance=this.balance-v;
+        this.lt=-v;
+        this.st.push("balance= "+this.balance+"     "+"Transaction Amt= "+(this.lt));
+    }
+}
+function deposit(v) {
+    this.balance=this.balance+v;
+    this.lt=v;
+    this.st.push("balance= "+this.balance+"     "+"Transaction Amt= "+(this.lt));
+}
+function statement(){
+    console.log("----------Statement for Account of " +this.account_holder+" -----------");
+    console.log(this.st);
+    console.log("---------------------------------------");
+}
+
+///// Prototypal Inheritance
+var bankOperations= {
+    deposit :deposit,
+    withdraw : withdraw,
+    statement : statement
+};
+
+
 function PiggyBank(account_holder)
 {
-    var account_holder=account_holder;
-    var balance = 0;
-    var lt = 0;
-    var st = [];
+    var bp={
+        account_holder:account_holder,
+        balance:0,
+        lt:0,
+        st : []
+    };
+    bp.__proto__=bankOperations;
 
-    function withdraw(v){
-        if(balance>v){
-            balance=balance-v;
-            lt=-v;
-            st.push( " balance= "+balance+"     "+"Transaction Amt= "+(lt));
-        }
+    this.withdraw=function withdraw(v){
+        bp.withdraw(v);//internally calling original function which is outside (having this )
     }
-    function deposit (v) {
-        balance=balance+v;
-        lt=v;
-        st.push(" balance= "+balance+"     "+"Transaction Amt= "+(lt));
+    this.deposit=function deposit(v){
+        bp.deposit(v);
     }
-    function statement(){
-        console.log("----------Statement for Account of " +account_holder+" -----------");
-        console.log(st);
-        console.log("---------------------------------------");
+    this.statement=function statement(){
+        bp.statement();
     }
-
-    this.deposit=deposit;
-    this.withdraw=withdraw;
-    this.statement=statement;
-
 }
 
 
@@ -48,4 +64,5 @@ arpan_pgb.statement();
 console.log(arpan_pgb.balance);
 
 // BUG:
-//for every customer seperate copie of 3 methods created
+//for every customer seperate copies of 3 methods created
+//Bug Improve : Size of functions inside Piggybank is reduce to only function call
