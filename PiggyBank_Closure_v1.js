@@ -24,16 +24,19 @@ var bankOperations= {
     statement : statement
 };
 
+function PrivatePiggyBank(account_holder)
+{
+        this.account_holder=account_holder;
+        this.balance=0;
+        this.lt=0;
+        this.st = [];
+    }
+PrivatePiggyBank.prototype=bankOperations;
 
 function PiggyBank(account_holder)
 {
-    var bp={
-        account_holder:account_holder,
-        balance:0,
-        lt:0,
-        st : []
-    };
-    bp.__proto__=bankOperations;
+    var bp=new PrivatePiggyBank(account_holder);
+    //no one can touch this "bp" except the function inside Piggybank
 
     this.withdraw=function withdraw(v){
         bp.withdraw(v);//internally calling original function which is outside (having this )
@@ -45,7 +48,6 @@ function PiggyBank(account_holder)
         bp.statement();
     }
 }
-
 
 var bhadresh_pgb = new PiggyBank("Bhadresh");
 var arpan_pgb = new PiggyBank("Arpan");
@@ -66,3 +68,5 @@ console.log(arpan_pgb.balance);
 // BUG:
 //for every customer seperate copies of 3 methods created
 //Bug Improve : Size of functions inside Piggybank is reduce to only function call
+
+//using prototype field
